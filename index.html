@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AlfaSec defensive security toolkit">
+  <title>AlfaSec | Defensive Security Toolkit</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#dashboard" aria-label="AlfaSec home">
+      <span class="brand-mark">A</span>
+      <span><strong>AlfaSec</strong><small>DEFENSIVE SECURITY TOOLKIT</small></span>
+    </a>
+    <nav class="top-actions" aria-label="Application actions">
+      <span class="status-dot"></span><span>Local analysis mode</span>
+      <button id="themeToggle" class="icon-button" type="button" aria-label="Toggle theme">◐</button>
+    </nav>
+  </header>
+
+  <div class="app-shell">
+    <aside class="sidebar">
+      <p class="eyebrow">Workspace</p>
+      <button class="nav-item active" data-view="dashboard"><span>⌂</span> Dashboard</button>
+      <p class="eyebrow">Security tools</p>
+      <button class="nav-item" data-view="password"><span>◆</span> Password checker</button>
+      <button class="nav-item" data-view="logs"><span>▤</span> Log analyzer</button>
+      <button class="nav-item" data-view="audit"><span>⌁</span> Code audit</button>
+      <button class="nav-item" data-view="permissions"><span>◫</span> File permissions</button>
+      <button class="nav-item" data-view="network"><span>⊙</span> Network check</button>
+      <p class="eyebrow">Output</p>
+      <button class="nav-item" data-view="reports"><span>▧</span> Reports</button>
+      <div class="sidebar-footer">
+        <strong>Privacy first</strong>
+        <p>Files are processed in your browser and are never uploaded by this app.</p>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="view active" id="dashboard">
+        <div class="hero">
+          <div>
+            <p class="eyebrow accent">Security workspace</p>
+            <h1>Defend with confidence.</h1>
+            <p class="hero-copy">A focused toolkit for finding common security weaknesses before they become incidents.</p>
+          </div>
+          <div class="hero-badge"><span>●</span><strong>Browser protected</strong><small>Analysis stays on this device</small></div>
+        </div>
+        <div class="metric-grid">
+          <article class="metric-card"><span class="metric-icon blue">◈</span><div><strong id="scanCount">0</strong><small>Scans this session</small></div></article>
+          <article class="metric-card"><span class="metric-icon amber">!</span><div><strong id="findingCount">0</strong><small>Findings detected</small></div></article>
+          <article class="metric-card"><span class="metric-icon green">✓</span><div><strong id="safeCount">0</strong><small>Checks completed</small></div></article>
+          <article class="metric-card"><span class="metric-icon purple">↗</span><div><strong id="reportCount">0</strong><small>Reports exported</small></div></article>
+        </div>
+        <div class="section-heading"><div><p class="eyebrow">Quick actions</p><h2>Choose a security check</h2></div></div>
+        <div class="tool-grid">
+          <button class="tool-card" data-view="password"><span class="tool-symbol blue">◆</span><span><strong>Password checker</strong><small>Evaluate password strength locally.</small></span><b>→</b></button>
+          <button class="tool-card" data-view="logs"><span class="tool-symbol amber">▤</span><span><strong>Log analyzer</strong><small>Find brute force and threat signals.</small></span><b>→</b></button>
+          <button class="tool-card" data-view="audit"><span class="tool-symbol red">⌁</span><span><strong>Code audit</strong><small>Detect risky coding patterns.</small></span><b>→</b></button>
+          <button class="tool-card" data-view="reports"><span class="tool-symbol green">▧</span><span><strong>Security report</strong><small>Export findings as a report.</small></span><b>→</b></button>
+        </div>
+        <div class="notice"><span>i</span><p><strong>Responsible use:</strong> AlfaSec is designed for defensive checks on systems and files you own or are authorized to assess.</p></div>
+      </section>
+
+      <section class="view" id="password">
+        <div class="page-heading"><p class="eyebrow accent">Security tool</p><h1>Password checker</h1><p>Assess password quality without sending it anywhere.</p></div>
+        <div class="panel narrow">
+          <label for="passwordInput">Password to evaluate</label>
+          <div class="secret-input"><input id="passwordInput" type="password" autocomplete="off" placeholder="Enter a test password"><button id="showPassword" type="button">Show</button></div>
+          <button id="checkPassword" class="primary-button" type="button">Analyze password</button>
+          <div id="passwordResult" class="result empty">Your result will appear here.</div>
+        </div>
+      </section>
+
+      <section class="view" id="logs">
+        <div class="page-heading"><p class="eyebrow accent">Security tool</p><h1>Log analyzer</h1><p>Upload a text log and identify authentication and threat indicators.</p></div>
+        <div class="panel">
+          <label for="logFile">Log file</label><input id="logFile" type="file" accept=".log,.txt,.csv,.json">
+          <p class="help">Processing happens locally in your browser. Nothing is uploaded.</p>
+          <textarea id="logInput" rows="8" placeholder="Or paste log entries here..."></textarea>
+          <button id="analyzeLog" class="primary-button" type="button">Analyze log</button>
+          <div id="logResult" class="result empty">Your result will appear here.</div>
+        </div>
+      </section>
+
+      <section class="view" id="audit">
+        <div class="page-heading"><p class="eyebrow accent">Security tool</p><h1>Code audit</h1><p>Scan source text for common defensive security issues.</p></div>
+        <div class="panel">
+          <label for="codeFile">Source file</label><input id="codeFile" type="file" accept=".java,.js,.ts,.py,.php,.cs,.go,.rb,.txt">
+          <p class="help">This is a lightweight pattern scanner, not a replacement for a full SAST platform.</p>
+          <textarea id="codeInput" rows="10" placeholder="Paste source code here..."></textarea>
+          <button id="auditCode" class="primary-button" type="button">Run code audit</button>
+          <div id="auditResult" class="result empty">Your result will appear here.</div>
+        </div>
+      </section>
+
+      <section class="view" id="permissions">
+        <div class="page-heading"><p class="eyebrow accent">Security tool</p><h1>File permissions</h1><p>Review browser-readable file metadata and identify risky names.</p></div>
+        <div class="panel">
+          <label for="permissionFile">Select a file</label><input id="permissionFile" type="file">
+          <div id="permissionResult" class="result empty">Choose a file to inspect its browser-visible metadata.</div>
+          <div class="notice"><span>i</span><p>Browsers intentionally do not expose operating-system permission bits. Use the Java companion for full local permission checks.</p></div>
+        </div>
+      </section>
+
+      <section class="view" id="network">
+        <div class="page-heading"><p class="eyebrow accent">Security tool</p><h1>Network check</h1><p>Review the current browser security context without making an external request.</p></div>
+        <div class="panel">
+          <button id="networkCheck" class="primary-button" type="button">Run network check</button>
+          <div id="networkResult" class="result empty">No network request is made until you start the check.</div>
+          <div class="notice"><span>!</span><p>A browser-based app cannot safely scan arbitrary ports. Use the Java companion for authorized localhost port checks.</p></div>
+        </div>
+      </section>
+
+      <section class="view" id="reports">
+        <div class="page-heading"><p class="eyebrow accent">Output</p><h1>Security reports</h1><p>Export a clear summary of your latest AlfaSec findings.</p></div>
+        <div class="panel">
+          <div id="reportPreview" class="report-preview">Run a check to build your report preview.</div>
+          <button id="exportReport" class="primary-button" type="button">Download report</button>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
